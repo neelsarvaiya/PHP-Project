@@ -49,7 +49,7 @@
                 <input type="text" class="form-control" value="<?= $data['price'] ?>" name="pPrice">
             </div>
             <label>Image:</label> <br>
-            <img src="upload/<?= $data['image'] ?>" alt="img" height="150px" width="50%">
+            <img src="upload/<?= $data['image'] ?>" alt="img" height="150px">
             <div class="mb-4">
                 <input type="file" class="form-control mt-3" name="pImg">
             </div>

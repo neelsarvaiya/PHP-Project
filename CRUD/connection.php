@@ -6,6 +6,7 @@
     die("Connection Failed".mysqli_connect_error());
  }
 
- define("UPLOAD_SRC",$_SERVER['DOCUMENT_ROOT']."/php/PHP-Project/PHP-CRUD/upload/");
+define("UPLOAD_SRC",$_SERVER['DOCUMENT_ROOT']."/php/tut-4-second/upload/");
+
 
 ?>

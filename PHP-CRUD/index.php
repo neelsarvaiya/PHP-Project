@@ -32,59 +32,47 @@
         </div>
     </div>
 
-    <div class="container mt-3">
-        <table class="table table-bordered-bottom text-center mt-3">
-            <thead id="header">
-                <tr>
-                    <th width="5%" class="bg-secondary">No.</th>
-                    <th width="20%" class="bg-secondary">Image</th>
-                    <th width="10%" class="bg-secondary">Name</th>
-                    <th width="30%" class="bg-secondary">Description</th>
-                    <th width="10%" class="bg-secondary">Price</th>
-                    <th width="20%" class="bg-secondary">Action</th>
-                </tr>
-            </thead>
-            <tbody class="shadow">
-                <?php
-                if (mysqli_num_rows($result) > 0) {
+    <div class="container d-flex flex-wrap mt-3">
+        <?php
+        if (mysqli_num_rows($result) > 0) {
 
-                    $i = 1;
-                    while ($data = mysqli_fetch_assoc($result)) {
-                ?>
-                        <tr>
-                            <td><?= $i; ?></td>
-                            <td><img src="upload/<?= $data['image'] ?>" height="150px"></td>
-                            <td><?= $data['name'] ?></td>
-                            <td><?= $data['description'] ?></td>
-                            <td><?= $data['price'] ?></td>
-                            <td>
-                                <a href="edit.php?id=<?= $data['id'] ?>"><button class="btn btn-info me-2">Edit</button></a>
-                                <a href="delete.php?id=<?= $data['id'] ?>&img=<?= urlencode($data['image']) ?>"><button class="btn btn-danger" name="delete">Delete</button>
-                            </td>
-                        </tr>
-                <?php
-                        $i++;
-                    }
-                }
-                ?>
-            </tbody>
-        </table>
+            $i = 1;
+            while ($data = mysqli_fetch_assoc($result)) {
+        ?>
+
+                <div class="card mx-3 mb-4" style="width:400px">
+                    <img class="card-img-top" src="upload/<?= $data['image'] ?>" alt="Card image" style="width:100%; height:300px;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <h4 class="card-title"><?= $data['name'] ?></h4>
+                            <h5 class="card-text">₹<?= $data['price'] ?></h5>
+                        </div>
+                        <p class="card-text mt-3"><?= $data['description'] ?></p>
+                        <div class="d-flex align-items-center justify-content-between mt-4">
+                            <a href="edit.php?id=<?= $data['id'] ?>"><button class="btn btn-info me-2">Edit</button></a>
+                            <a href="delete.php?id=<?= $data['id'] ?>&img=<?= urlencode($data['image']) ?>"><button class="btn btn-danger" name="delete">Delete</button></a>
+                        </div>
+                    </div>
+                </div>
+
+        <?php
+                $i++;
+            }
+        }
+        ?>
+
         <?php
         if (mysqli_num_rows($result) == 0) {
 
             echo '
-            <div class="alert alert-warning text-center mt-5">
+            <div class="alert alert-warning text-center w-100 mt-5">
             <h2>NO Data Found</h2>
             </div>
             ';
-        ?>
-            <script>
-                var header = document.querySelector('#header');
-                header.style.display = 'none';
-            </script>
-        <?php
+
         }
         ?>
+
     </div>
 
 </body>
